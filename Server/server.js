@@ -5,7 +5,7 @@ const publicPath = path.join(__dirname,'../Public');
 
 var app = express();
 
-const PORT = 3003;
+const PORT = process.env.PORT||3003;
 
 
 
