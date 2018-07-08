@@ -30,29 +30,27 @@ io.on("connection",(socket)=>{
         "createdAt": new Date().getTime()
     });
 
-    socket.broadcast.emit('NewEmail',{
-        "from":"Admin",
-        "text":"New User Joined the Group",
-        "createdAt": new Date().getTime()
+    // socket.broadcast.emit('NewEmail',{
+    //     "from":"Admin",
+    //     "text":"New User Joined the Group",
+    //     "createdAt": new Date().getTime()
 
-    })
+    // })
+
     socket.on('CreateEmail',function(newEmailData){
-        console.log(`server Recive EmailData:${newEmailData}`);
-        console.log(newEmailData);
-
+        //console.log(`server Recive EmailData:${newEmailData}`);
+        console.log('server Recive EmailData:',newEmailData);
 //** Public Channel Emit to Every one **/
-        // io.emit('NewEmail',{
-        //     "from":newEmailData.from,
-        //     "text":newEmailData.text,
-        //     "createdAt": new Date().getTime()
-        // })
-
+        io.emit('NewEmail',{
+            "from":newEmailData.from,
+            "text":newEmailData.text,
+            "createdAt": new Date().getTime()
+        })
 //** Public Channel Emit to Every one Except the one who post the notification**/
         // socket.broadcast.emit('NewEmail',{
         //     "from":"Admin",
         //     "text":"New User Joined the Group",
         //     "createdAt": new Date().getTime()
-
         // })
 
     })
